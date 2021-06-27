@@ -4,39 +4,43 @@
 
 char *generate(int n)
 {
-    srand(time(NULL));
-    char *tmp = malloc(n);
-    for (int i = 0; i < n; ++i) {
+    char *tmp = malloc(n + 1);
+    int i = 0;
+
+    for (i; i < n; ++i) {
 	tmp[i] = rand() % (126 - 33) + 33;
 	if (tmp[i] == 96)
 	    ++tmp[i];
     }
+    tmp[i] = '\0';
     return (tmp);
 }
 
-void help(void)
+int help(void)
 {
     printf("This is a random password generator\n");
     printf("USAGE\n\t./pass length\n\t");
     printf("This program returns the security level ");
     printf("of the generated password (in percent)\n");
-    exit (0);
+    printf("You can redirect the output of this program if you\n");
+    printf("want to store the generated password !\n");
+
+    return (0);
 }
 
 int main(int ac, char **av)
 {
-    int n = 10;
-    char *pswd;
-    int e;
+    int length = 10;
+    int security_level;
 
     if (ac == 2) {
 	if (av[1][0] == '-' && av[1][1] == 'h')
-	    help();
+	    return (help());
 	else
-	    n = atoi(av[1]);
+	    length = atoi(av[1]);
     }
-    e = (n * (100 / 16) > 100) ? 100 : n * (100 / 16);
-    pswd = generate(n);
-    printf("Your password : %s", pswd);
-    exit (e);
+    srand(time(NULL));
+    security_level = (length * (100 / 16) > 100) ? 100 : length * (100 / 16);
+    printf("%s", generate(length));
+    return (security_level);
 }
