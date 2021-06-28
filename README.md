@@ -43,4 +43,5 @@ Of course, you can contribute to this project, but you'll have to follow those r
   ```
 - do not write more than 20 lines a function, and 5 functions a file,
 - make understandable variable names
+
 This coding style will make the code easier to understand to whoever wants to contribute. Thanks !
