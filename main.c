@@ -19,8 +19,8 @@ char *generate(int n)
 int help(void)
 {
     printf("This is a random password generator\n");
-    printf("USAGE\n\t./pass length\n\t");
-    printf("This program returns the security level ");
+    printf("USAGE\n\t./pass [length (int)]\n");
+    printf("This program returns the security level\n");
     printf("of the generated password (in percent)\n");
     printf("You can redirect the output of this program if you\n");
     printf("want to store the generated password !\n");
@@ -34,10 +34,12 @@ int main(int ac, char **av)
     int security_level;
 
     if (ac == 2) {
-	if (av[1][0] == '-' && av[1][1] == 'h')
-	    return (help());
-	else
-	    length = atoi(av[1]);
+	    if (av[1][0] == '-' && av[1][1] == 'h')
+	        return (help());
+    	else if (atoi(av[1]) >= 2)
+    	    length = atoi(av[1]);
+        else
+            return (-1 + printf("Your password must contain at least 2 characters !\n"));
     }
     srand(time(NULL));
     security_level = (length * (100 / 16) > 100) ? 100 : length * (100 / 16);
