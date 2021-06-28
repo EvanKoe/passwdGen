@@ -1,7 +1,8 @@
 # PASSWDGEN
 This little program generates a random password of a given length, using the C language. It is used as follows :
+  ```bash
   ./passwdGen [length (int)]
-
+  ```
 By default, length is set to 10. The minimal length is 2 (and you will get a bad security score...)
 /!\ Note that the password will contain alphanumeric and special characters.
 
